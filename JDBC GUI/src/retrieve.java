@@ -9,7 +9,7 @@ public class retrieve {
 	
 	public static ResultSet rs;
 	public static String name="", email ="", lastname="";
-
+///////////
 	
  public static void main(String args[]) {
  JFrame f = new JFrame();
