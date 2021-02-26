@@ -29,7 +29,8 @@ public class retrieve {
 	final JTextField lNameField = new JTextField(65);
 	final JTextField ssnField = new JTextField(65);
 	final JTextField genderField = new JTextField(1);
-	JButton btnDelete = new JButton("Update");
+	JButton btnDelete = new JButton("Delete");
+	JButton btnInsert = new JButton("Insert");
 	JButton next = new JButton("Next");
 	JButton prev = new JButton("Prev");
 
@@ -60,6 +61,7 @@ public class retrieve {
 		p.add(next);
 		p.add(prev);
 		p.add(btnDelete);
+		p.add(btnInsert);
 		f.add(p);
 		f.setVisible(true);
 		f.pack();
@@ -91,6 +93,33 @@ public class retrieve {
 				    }   
 				
 				});
+				
+				
+				//Handles Insert Button
+				btnInsert.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						try
+				        {
+				            Class.forName("com.mysql.jdbc.Driver");
+				            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "password");
+				             
+				            st = con.createStatement();
+				            st.executeUpdate("INSERT INTO test (fName, lName, ssn, salary, gender) VALUES('"+ fNameField.getText() +"','"+ lNameField.getText() +"','"+ ssnField.getText()+ "','" + "5" + "','"+ genderField.getText() +"'" + ")"); //Using temporary placeholder of 5 for salary
+				        } 
+				        catch (Exception e) {
+				            e.printStackTrace();
+				        }finally {
+				            try {   
+				                st.close();
+				                con.close();
+				            } catch (Exception e) {
+				                e.printStackTrace();
+				            }
+				        }
+				    }   
+				
+				});
+		
 		
 		//Handles Previous Button
 		prev.addActionListener(new ActionListener() {
