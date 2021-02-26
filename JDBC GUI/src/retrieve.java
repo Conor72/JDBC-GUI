@@ -29,6 +29,7 @@ public class retrieve {
 	final JTextField lNameField = new JTextField(65);
 	final JTextField ssnField = new JTextField(65);
 	final JTextField genderField = new JTextField(1);
+	JButton btnUpdate = new JButton("Update");
 	JButton btnDelete = new JButton("Delete");
 	JButton btnInsert = new JButton("Insert");
 	JButton next = new JButton("Next");
@@ -62,10 +63,41 @@ public class retrieve {
 		p.add(prev);
 		p.add(btnDelete);
 		p.add(btnInsert);
+		p.add(btnUpdate);
 		f.add(p);
 		f.setVisible(true);
 		f.pack();
 		
+		
+	//	UPDATE Customers
+	//	SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
+	//	WHERE CustomerID = 1;
+		
+		
+		//Handles Update Button
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try
+		        {
+		            Class.forName("com.mysql.jdbc.Driver");
+		            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "password");
+		             
+		            st = con.createStatement();
+		            st.executeUpdate("UPDATE test SET fName = " + "'" + fNameField.getText() + "'," + "lName = "  + "'" + lNameField.getText() + "'" + "WHERE ssn = 1;" ); //Basic Update funciton, TODO Add other variables
+		        } 
+		        catch (Exception e) {
+		            e.printStackTrace();
+		        }finally {
+		            try {   
+		                st.close();
+		                con.close();
+		            } catch (Exception e) {
+		                e.printStackTrace();
+		            }
+		        }
+		    }   
+		
+		});
 		
 		
 	
@@ -119,6 +151,9 @@ public class retrieve {
 				    }   
 				
 				});
+				
+				
+				
 		
 		
 		//Handles Previous Button
