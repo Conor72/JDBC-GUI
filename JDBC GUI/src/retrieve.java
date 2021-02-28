@@ -73,7 +73,7 @@ public class retrieve {
 		f.pack();
 		
 		
-	//	UPDATE Customers
+	    //UPDATE Customers
 		//Handles Update Button
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -84,6 +84,13 @@ public class retrieve {
 		             
 		            st = con.createStatement();
 		            st.executeUpdate("UPDATE test SET fName = " + "'" + fNameField.getText() + "'," + "gender = " + "'" + genderField.getText() + "',"  +  "salary = " + "'" + salaryField.getText() + "',"  + "lName = "  + "'" + lNameField.getText() + "'" + "WHERE ssn =" + ssnField.getText() +";" ); //Basic Update funciton, TODO Add other variables
+		            //Success Popup
+		            JOptionPane.showMessageDialog(null, 
+                              "User has been successfully updated!", 
+                              "Success!", 
+                              JOptionPane.WARNING_MESSAGE);  
+		        
+		        
 		        } 
 		        catch (Exception e) {
 		            e.printStackTrace();
@@ -111,6 +118,17 @@ public class retrieve {
 				             
 				            st = con.createStatement();
 				            st.execute("DELETE FROM test WHERE ssn = " +ssnField.getText()); 		//Uses SSN number as unique ID 
+				            //Set fields to empty
+				            fNameField.setText("");
+				            lNameField.setText("");
+				            ssnField.setText("");
+				            salaryField.setText("");
+				            genderField.setText("");
+				            //Success Popup
+				            JOptionPane.showMessageDialog(null, 
+		                              "User has been successfully deleted!", 
+		                              "Success!", 
+		                              JOptionPane.WARNING_MESSAGE);
 				        } 
 				        catch (Exception e) {
 				            e.printStackTrace();
@@ -149,16 +167,23 @@ public class retrieve {
 				             
 				            st = con.createStatement();
 				            st.executeUpdate("INSERT INTO test (fName, lName, ssn, salary, gender) VALUES('"+ fNameField.getText() +"','"+ lNameField.getText() +"','"+ ssnField.getText()+ "','" + salaryField.getText() + "','"+ genderField.getText() +"'" + ")"); //Using temporary placeholder of 5 for salary
+				            //Set fields to empty
 				            fNameField.setText("");
 				            lNameField.setText("");
 				            ssnField.setText("");
 				            salaryField.setText("");
 				            genderField.setText("");
+				            //Success Popup
+				            JOptionPane.showMessageDialog(null, 
+		                              "User has been successfully created!", 
+		                              "Success!", 
+		                              JOptionPane.WARNING_MESSAGE);
+				            
 				        } 
 						
 				        catch (Exception e)  {
 				        	
-				        	JOptionPane.showMessageDialog(null, "You MUST include a first name!");
+				        	e.printStackTrace();
 				        }finally {
 				            try {   
 				                st.close();
