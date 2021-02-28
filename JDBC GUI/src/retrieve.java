@@ -7,7 +7,7 @@ import java.awt.event.*;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import com.mysql.cj.jdbc.Driver;
-
+import javax.swing.JOptionPane;
 
 
 
@@ -130,16 +130,31 @@ public class retrieve {
 				//Handles Insert Button
 				btnInsert.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						
+						if (fNameField.getText() == null || fNameField.getText().trim().isEmpty() || lNameField.getText() == null || lNameField.getText().trim().isEmpty() || ssnField.getText() == null || ssnField.getText().trim().isEmpty() || salaryField.getText() == null || salaryField.getText().trim().isEmpty() || genderField.getText() == null || genderField.getText().trim().isEmpty()) {
+			            	JOptionPane.showMessageDialog(null, 
+		                              "Please Fill In All The Fields!", 
+		                              "ERROR!", 
+		                              JOptionPane.WARNING_MESSAGE);
+			            	
+			           }
+						else
+						
 						try
 				        {
 				            Class.forName("com.mysql.jdbc.Driver");
 				            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "password");
+				            
+				            
 				             
 				            st = con.createStatement();
 				            st.executeUpdate("INSERT INTO test (fName, lName, ssn, salary, gender) VALUES('"+ fNameField.getText() +"','"+ lNameField.getText() +"','"+ ssnField.getText()+ "','" + salaryField.getText() + "','"+ genderField.getText() +"'" + ")"); //Using temporary placeholder of 5 for salary
+
 				        } 
-				        catch (Exception e) {
-				            e.printStackTrace();
+						
+				        catch (Exception e)  {
+				        	
+				        	JOptionPane.showMessageDialog(null, "You MUST include a first name!");
 				        }finally {
 				            try {   
 				                st.close();
@@ -147,14 +162,14 @@ public class retrieve {
 				            } catch (Exception e) {
 				                e.printStackTrace();
 				            }
+				            
 				        }
 				    }   
 				
 				});
 				
 				
-				
-		
+
 		
 		//Handles Previous Button
 		prev.addActionListener(new ActionListener() {
