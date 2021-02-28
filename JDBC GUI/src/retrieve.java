@@ -149,7 +149,11 @@ public class retrieve {
 				             
 				            st = con.createStatement();
 				            st.executeUpdate("INSERT INTO test (fName, lName, ssn, salary, gender) VALUES('"+ fNameField.getText() +"','"+ lNameField.getText() +"','"+ ssnField.getText()+ "','" + salaryField.getText() + "','"+ genderField.getText() +"'" + ")"); //Using temporary placeholder of 5 for salary
-
+				            fNameField.setText("");
+				            lNameField.setText("");
+				            ssnField.setText("");
+				            salaryField.setText("");
+				            genderField.setText("");
 				        } 
 						
 				        catch (Exception e)  {
