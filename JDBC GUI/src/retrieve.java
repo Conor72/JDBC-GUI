@@ -7,7 +7,9 @@ import java.awt.event.*;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import com.mysql.cj.jdbc.Driver;
-import javax.swing.JOptionPane;
+
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 
 
@@ -20,7 +22,8 @@ public class retrieve {
 ///////////
 	
  public static void main(String args[]) {
- JFrame f = new JFrame();
+ JFrame f = new JFrame("Conor Brett - Assignment 1");
+ 	
 	final JLabel fNameLabel = new JLabel("Name: ");
 	JLabel lNameLabel = new JLabel("Last Name: ");
 	JLabel ssnLabel = new JLabel("SSN Number: ");
@@ -53,6 +56,7 @@ public class retrieve {
 	catch(Exception e){}
 	
 		JPanel p = new JPanel(new GridLayout(8,8));
+		p.setBorder(BorderFactory.createTitledBorder("JAVA / MySQL CRUD APPLICATION"));
 		p.add(fNameLabel);
 		p.add(fNameField);
 		p.add(lNameLabel);
