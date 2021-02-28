@@ -56,7 +56,6 @@ public class retrieve {
 	catch(Exception e){}
 	
 		JPanel p = new JPanel(new GridLayout(8,8));
-		p.setBorder(BorderFactory.createTitledBorder("JAVA / MySQL CRUD APPLICATION"));
 		p.add(fNameLabel);
 		p.add(fNameField);
 		p.add(lNameLabel);
@@ -156,6 +155,14 @@ public class retrieve {
 						if (fNameField.getText() == null || fNameField.getText().trim().isEmpty() || lNameField.getText() == null || lNameField.getText().trim().isEmpty() || ssnField.getText() == null || ssnField.getText().trim().isEmpty() || salaryField.getText() == null || salaryField.getText().trim().isEmpty() || genderField.getText() == null || genderField.getText().trim().isEmpty()) {
 			            	JOptionPane.showMessageDialog(null, 
 		                              "Please Fill In All The Fields!", 
+		                              "ERROR!", 
+		                              JOptionPane.WARNING_MESSAGE);
+			            	
+			           }
+						
+						else if (!genderField.getText().equals("M") && !genderField.getText().equals("F") ) {
+			            	JOptionPane.showMessageDialog(null, 
+		                              "Please Input a valid gender (M/F)!", 
 		                              "ERROR!", 
 		                              JOptionPane.WARNING_MESSAGE);
 			            	
