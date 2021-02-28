@@ -25,10 +25,12 @@ public class retrieve {
 	JLabel lNameLabel = new JLabel("Last Name: ");
 	JLabel ssnLabel = new JLabel("SSN Number: ");
 	JLabel genderLabel = new JLabel("Gender: ");
+	JLabel salaryLabel = new JLabel("Salary: ");
 	final JTextField fNameField = new JTextField(65);
 	final JTextField lNameField = new JTextField(65);
 	final JTextField ssnField = new JTextField(65);
 	final JTextField genderField = new JTextField(1);
+	final JTextField salaryField = new JTextField(65);
 	JButton btnUpdate = new JButton("Update");
 	JButton btnDelete = new JButton("Delete");
 	JButton btnInsert = new JButton("Insert");
@@ -57,6 +59,8 @@ public class retrieve {
 		p.add(lNameField);
 		p.add(ssnLabel);
 		p.add(ssnField);
+		p.add(salaryLabel);
+		p.add(salaryField);
 		p.add(genderLabel);
 		p.add(genderField);
 		p.add(next);
@@ -70,10 +74,6 @@ public class retrieve {
 		
 		
 	//	UPDATE Customers
-	//	SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
-	//	WHERE CustomerID = 1;
-		
-		
 		//Handles Update Button
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -83,7 +83,7 @@ public class retrieve {
 		            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "password");
 		             
 		            st = con.createStatement();
-		            st.executeUpdate("UPDATE test SET fName = " + "'" + fNameField.getText() + "'," + "lName = "  + "'" + lNameField.getText() + "'" + "WHERE ssn = 1;" ); //Basic Update funciton, TODO Add other variables
+		            st.executeUpdate("UPDATE test SET fName = " + "'" + fNameField.getText() + "'," + "gender = " + "'" + genderField.getText() + "',"  +  "salary = " + "'" + salaryField.getText() + "',"  + "lName = "  + "'" + lNameField.getText() + "'" + "WHERE ssn =" + ssnField.getText() +";" ); //Basic Update funciton, TODO Add other variables
 		        } 
 		        catch (Exception e) {
 		            e.printStackTrace();
@@ -136,7 +136,7 @@ public class retrieve {
 				            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "password");
 				             
 				            st = con.createStatement();
-				            st.executeUpdate("INSERT INTO test (fName, lName, ssn, salary, gender) VALUES('"+ fNameField.getText() +"','"+ lNameField.getText() +"','"+ ssnField.getText()+ "','" + "5" + "','"+ genderField.getText() +"'" + ")"); //Using temporary placeholder of 5 for salary
+				            st.executeUpdate("INSERT INTO test (fName, lName, ssn, salary, gender) VALUES('"+ fNameField.getText() +"','"+ lNameField.getText() +"','"+ ssnField.getText()+ "','" + salaryField.getText() + "','"+ genderField.getText() +"'" + ")"); //Using temporary placeholder of 5 for salary
 				        } 
 				        catch (Exception e) {
 				            e.printStackTrace();
@@ -172,6 +172,9 @@ public class retrieve {
 						
 						gender=rs.getString("gender");
 						genderField.setText(gender);
+						
+						salary=rs.getString("salary");
+						salaryField.setText(salary);
 				
 				
 					}
@@ -198,6 +201,9 @@ public class retrieve {
 						
 						gender=rs.getString("gender");
 						genderField.setText(gender);
+						
+						salary=rs.getString("salary");
+						salaryField.setText(salary);
 				
 				
 					}
