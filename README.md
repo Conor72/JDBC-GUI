@@ -18,6 +18,8 @@ Gender text field must have a vaild entry (M/F) otherwise there will be a popup 
 
 When all fields have valid input and the query is successful the user will be prompted with a popup saying a user has been created and the text fields will all return to empty.
 
+Integar must be inputted in salary field, otherwise a new user will not be created
+
 
 ## Read:
 Next Button and Prev Button browse through list of users on SQL server and display details in text field
