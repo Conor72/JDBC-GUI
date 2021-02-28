@@ -33,7 +33,7 @@ public class retrieve {
 	final JTextField salaryField = new JTextField(65);
 	JButton btnUpdate = new JButton("Update");
 	JButton btnDelete = new JButton("Delete");
-	JButton btnInsert = new JButton("Insert");
+	JButton btnInsert = new JButton("Save");
 	JButton next = new JButton("Next");
 	JButton prev = new JButton("Prev");
 
@@ -52,7 +52,7 @@ public class retrieve {
 		
 	catch(Exception e){}
 	
-		JPanel p = new JPanel(new GridLayout(4,2));
+		JPanel p = new JPanel(new GridLayout(8,8));
 		p.add(fNameLabel);
 		p.add(fNameField);
 		p.add(lNameLabel);
@@ -65,9 +65,9 @@ public class retrieve {
 		p.add(genderField);
 		p.add(next);
 		p.add(prev);
-		p.add(btnDelete);
 		p.add(btnInsert);
 		p.add(btnUpdate);
+		p.add(btnDelete);
 		f.add(p);
 		f.setVisible(true);
 		f.pack();
@@ -117,7 +117,7 @@ public class retrieve {
 				            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "password");
 				             
 				            st = con.createStatement();
-				            st.execute("DELETE FROM test WHERE ssn = " +ssnField.getText()); 		//Uses SSN number as unique ID 
+				            st.execute("DELETE FROM test WHERE ssn = + " + "'" +ssnField.getText() + "'" + "AND fName = " + "'" + fNameField.getText() + "'" + "'" + lNameField.getText() + "'" + "'" + genderField.getText() + "'" + "'" + salaryField.getText() + "'"); 		//Delete username when all text fields match a user
 				            //Set fields to empty
 				            fNameField.setText("");
 				            lNameField.setText("");
@@ -257,38 +257,6 @@ public class retrieve {
 				}
 			}
 		});
-		
-		
-		
-
-		
-		
-		
-//		
-//		btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
-//	        // TODO add your handling code here:
-//	        int i = tblStudents.getSelectedRow();
-//	        if (i >= 0) {
-//	            int option = JOptionPane.showConfirmDialog(rootPane,
-//	                    "Are you sure you want to Delete?", "Delete confirmation", JOptionPane.YES_NO_OPTION);
-//	            if (option == 0) {
-//	                TableModel model = tblStudents.getModel();
-//
-//	                String id = model.getValueAt(i, 2).toString();
-//	                if (tblStudents.getSelectedRows().length == 1) {
-//	                    delete(id);
-//	                    DefaultTableModel model1 = (DefaultTableModel) tblStudents.getModel();
-//	                    model1.setRowCount(0);
-//	                    fetch();
-//	                    clear();
-//	                }
-//	            }
-//	        } else {
-//	            alert("Please select a row to delete");
-//	        }
-//		
-//		
-//		
 		
 		
 		
